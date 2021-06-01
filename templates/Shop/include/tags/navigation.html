@@ -1,0 +1,37 @@
+{% for category in list_category %}
+    {{ category.name }}
+    <div class="sidebar__widget">
+                            <div class="sidebar__box">
+                                <h5 class="sidebar__title">PRODUCT CATEGORIES</h5>
+                            </div>
+                            <ul class="sidebar__menu">
+                                <li>
+                                    <ul class="sidebar__menu-collapse">
+                                        <!-- Start Single Menu Collapse List -->
+                                       <li class="sidebar__menu-collapse-list">
+                                           <div class="accordion">
+                                               <a href="#" class="accordion__title collapsed" data-toggle="collapse" data-target="#men-fashion" aria-expanded="false">Lorem  <i class="far fa-chevron-down"></i></a>
+                                               <div id="men-fashion" class="collapse">
+                                                   <ul class="accordion__category-list">
+                                                       <li><a href="#">ipsum </a></li>
+                                                       <li><a href="#">dolor  &amp; sit </a></li>
+                                                       <li><a href="#">amet</a></li>
+                                                       <li><a href="#">consectetur </a></li>
+                                                       <li><a href="#">adipiscing  &amp; elit</a></li>
+                                                   </ul>
+                                               </div>
+                                           </div>
+                                       </li> <!-- End Single Menu Collapse List -->
+                                   </ul>
+                                </li>
+                               <li ><a href="#">Nullam </a></li>
+                               <li ><a href="#"> eget </a></li>
+                               <li ><a href="#"> hendrerit </a></li>
+                               <li ><a href="#"> massa</a></li>
+                               <li ><a href="#">Donec </a></li>
+                               <li ><a href="#"> sit </a></li>
+                               <li ><a href="#"> amet </a></li>
+                               <li ><a href="#">metus</a></li>
+                            </ul>
+                        </div>
+{% endfor %}

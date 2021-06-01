@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Hermes New</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- ::::::::::::::Favicon icon::::::::::::::-->
+
+    <link rel="shortcut icon" href="{% static "/img/favicon.png"%}" type="image/png">
+    <link rel="stylesheet" href={% static "/css/vendor/vendor.min.css" %} />
+    <link rel="stylesheet" href={% static "/css/plugin/plugins.min.css" %} />
+    <link rel="stylesheet" href={% static "/css/main.min.css" %}>
+    <link rel="stylesheet" href={% static "style.css"%}>
+    <link rel="stylesheet" href={% static "/form/css/style.css" %} />
+    <link rel="stylesheet" href={% static "/css/main.css"%}/>
+
+
+
+    <!-- Main Style CSS File -->
+    <link rel="stylesheet" href={% static "/css/main.css" %}>
+</head>
+
+<body>
+    <!-- ::::::  Start Header Section  ::::::  -->
+    <header>
+        <!--  Start Large Header Section   -->
+        <div class="header d-none d-lg-block">
+            <!-- Start Header Top area -->
+            <div class="header__top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="header__top-content d-flex justify-content-between align-items-center">
+                                <div class="header__top-content--left">
+                                    <span>ПН-ПТ: 9:00 - 18:00</span>
+                                </div>
+                                <ul class="header__top-content--right call us">
+                                    <span>Позвоните нам: (38) 067 464 37 47</span>
+                                </ul>
+                                </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- Start Header Top area -->
+
+            <!-- Start Header Center area -->
+            <div class="header__center sticky-header p-tb-10">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 d-flex justify-content-between align-items-center">
+                            <!-- Start Logo -->
+                            <div class="header__logo">
+                                <a href="{% url 'home' %}" class="header__logo-link img-responsive">
+                                    <img class="header__logo-img img-fluid" src={% static "/img/logo/Logo.png" %} alt="">
+                                </a>
+                            </div> <!-- End Logo -->
+                            <!-- Start Header Menu -->
+                            <div class="header-menu">
+                                <nav>
+                                    <ul class="header__nav">
+                                        <!--Start Single Nav link-->
+                                        <li class="header__nav-item pos-relative">
+                                            <a href="{% url 'about' %}" class="header__nav-link">О Нас</a>
+                                        </li> <!-- End Single Nav link-->
+
+                                        <!--Start Single Nav link-->
+                                        <li class="header__nav-item pos-relative">
+                                            <a href="{% url 'post' %}" class="header__nav-link">Каталог</a>
+                                        </li> <!-- End Single Nav link-->
+
+                                        <!--Start Single Nav link-->
+                                        <li class="header__nav-item pos-relative">
+                                            <a href="{% url 'cart:cart_detail' %}" class="header__nav-link">Оплата </a>
+                                        </li>
+                                        <!--Start Single Nav link-->
+                                        <li class="header__nav-item pos-relative">
+                                            <a href="{% url 'delivery' %}" class="header__nav-link">Доставка </a>
+                                        </li>
+                                        <!--Start Single Nav link-->
+                                        <li class="header__nav-item pos-relative">
+                                            <a href="{% url 'guarantee' %}" class="header__nav-link">Возврат и
+                                                гарантия</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div> <!-- End Header Menu -->
+
+                            <!-- Start Wishlist-AddCart -->
+                            <ul class="header__user-action-icon">
+                                <!-- Start Header Wishlist Box -->
+                                <li>
+                                    <a href="{% url 'call' %}">
+                                        <img src={% static "/img/icon/Telephone.png" %}>
+                                    </a>
+                                </li> <!-- End Header Wishlist Box -->
+                                <!-- Start Header Add Cart Box -->
+                                <li>
+                                    <a href="#offcanvas-add-cart__box" class="offcanvas-toggle">
+                                        <i class="icon-shopping-cart"></i>
+{#                                        <span class="wishlist-item-count pos-absolute">{{ cart.quantity }}</span>#}
+                                    </a>
+                                </li> <!-- End Header Add Cart Box -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- End Header Center area -->
+        </div> <!--  End Large Header Section  -->
+
+        <!--  Start Popup Add Cart  -->
+        <div id="offcanvas-add-cart__box" class="offcanvas offcanvas-cart offcanvas-add-cart">
+            <div class="offcanvas__top">
+                <span class="offcanvas__top-text"><i class="icon-shopping-cart"></i>Корзина</span>
+                <button class="offcanvas-close"><i class="fal fa-times"></i></button>
+            </div>
+            <!-- Start Add Cart Item Box-->
+            <ul class="offcanvas-add-cart__menu">
+                <!-- Start Single Add Cart Item-->
+                {% for item in cart %}
+                {% with product=item.product %}
+                <li class="offcanvas-add-cart__list pos-relative d-flex align-items-center justify-content-between">
+                    <div class="offcanvas-add-cart__content d-flex  align-items-start m-r-10">
+                        <div class="offcanvas-add-cart__img-box pos-relative">
+                            <a href="product-single-default.html"
+                                class="offcanvas-add-cart__img-link img-responsive"><img
+                                    src={% if product.image %}{{ product.image.url }}{% else %}{% static "/img/product/size-small/product-home-1-img-2.jpg"  %}{% endif %} alt=""
+                                    class="add-cart__img"></a>
+                            <span class="offcanvas-add-cart__item-count pos-absolute">{{ item.quantity }}x</span>
+                        </div>
+                        <div class="offcanvas-add-cart__detail">
+                            <a href="{% url "detail"  product.category.slug product.slug %}" class="offcanvas-add-cart__link">{{ product.title }}</a>
+                            <span class="offcanvas-add-cart__price">₴{{ product.price }}</span>
+                            <span class="offcanvas-add-cart__info">Dimension: 40x60cm</span>
+                        </div>
+                    </div>
+                    <a href="{% url 'cart:cart_remove' product.id %}" class="offcanvas-add-cart__item-dismiss"><i class="fal fa-times"></i></a>
+                </li> <!-- Start Single Add Cart Item-->
+                {% endwith %}
+                {% endfor %}
+            </ul> <!-- Start Add Cart Item Box-->
+            <!-- Start Add Cart Checkout Box-->
+            <div class="offcanvas-add-cart__checkout-box-bottom">
+                <!-- Start offcanvas Add Cart Checkout Info-->
+                <ul class="offcanvas-add-cart__checkout-info">
+                    <!-- Start Single Add Cart Checkout Info-->
+                    <li class="offcanvas-add-cart__checkout-list">
+                        <span class="offcanvas-add-cart__checkout-left-info">Сумма для оплаты товара</span>
+                        <span class="offcanvas-add-cart__checkout-right-info">₴{{ cart.get_total_price }}</span>
+                    </li> <!-- End Single Add Cart Checkout Info-->
+                </ul> <!-- End offcanvas Add Cart Checkout Info-->
+
+                <div class="offcanvas-add-cart__btn-checkout">
+                    <a href="{% url 'cart:cart_detail' %}"
+                        class="btn btn--block btn--radius btn--box btn--black btn--black-hover-green btn--large btn--uppercase font--bold">Оплатить</a>
+                </div>
+            </div> <!-- End Add Cart Checkout Box-->
+        </div> <!-- End Popup Add Cart -->
+
+        <div class="offcanvas-overlay"></div>
+    </header> <!-- :::::: End Header Section ::::::  -->
+{% block main %}
+
+{% endblock %}
+
+    <footer class="footer">
+        <div class="container">
+             <!-- ::::::  Start  Footer ::::::  -->
+    <footer class="footer">
+        <div class="container">
+            <!-- Start Footer Top Section -->
+            <div class="footer__top">
+                <div class="row">
+                    <div class="col-lg-4 col-md-5">
+                        <div class="footer__about">
+                            <div class="footer__logo">
+                                <a href="#" class="footer__logo-link">
+                                    <img src="{% static "/img/logo/Logo.png" %}" alt="" class="footer__logo-img">
+                                </a>
+                            </div>
+
+                            <ul class="footer__address">
+                                <li class="footer__address-item">
+                                 <div class="footer__contact">
+                                <p>Контактная информация</p>
+                            </div>
+                            </li>
+                                <li class="footer__address-item">
+                                    <i class="fa fa-home"></i>Киев, Госолеевский р-н, ул.
+                                    Науки Проспект, 96
+                                </li>
+                                <li class="footer__address-item">
+                                    <i class="fa fa-phone-alt"></i>+(38) 067 464 37 47
+                                    </li>
+                                <li class="footer__address-item">
+                                    <i class="fa fa-envelope"></i>hermess.auto@gmail.com
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-6 col-12" style="margin-right:5%; margin-left:26%; margin-top:10%">
+                        <!-- Start Footer Nav -->
+                        <div class="footer__menu">
+                            <h4 class="footer__nav-title footer__nav-title--dash footer__nav-title--dash-red">
+                                Каталог
+                                товаров
+                            </h4>
+                            <ul class="footer__nav">
+                                <li class="footer__list">
+                                    <a href="" class="footer__link">Автозапчасти</a>
+                                </li>
+                                <li class="footer__list">
+                                    <a href="" class="footer__link">Автохимия</a>
+                                </li>
+                                <li class="footer__list">
+                                    <a href="" class="footer__link">Шины и диски</a>
+                                </li>
+                                <li class="footer__list">
+                                    <a href="" class="footer__link">Кузовные запчасти</a>
+                                </li>
+                                <li class="footer__list">
+                                    <a href="" class="footer__link">Оптика</a>
+                                </li>
+                                <li class="footer__list">
+                                    <a href="" class="footer__link">Запчасти для ТО</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- End Footer Nav -->
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-6 col-12" style="margin-right:0; margin-top: 10%;">
+                        <div class="footer__menu">
+                            <h4 class="footer__nav-title footer__nav-title--dash footer__nav-title--dash-red">
+                                Информация
+                            </h4>
+                            <ul class="footer__nav">
+                                <li class="footer__list">
+                                    <a asp-controller="Home" asp-action="AboutUs" class="footer__link">О Нас</a>
+                                </li>
+                                <li class="footer__list">
+                                    <a asp-controller="Home" asp-action="Payments" class="footer__link">Оплата</a>
+                                </li>
+                                <li class="footer__list">
+                                    <a asp-controller="Home" asp-action="Delivery" class="footer__link">Доставка</a>
+                                </li>
+                                <li class="footer__list">
+                                    <a asp-controller="Home" asp-action="ReturnsNRefunds" class="footer__link">
+                                        Возврат и гарантия
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- End Footer Top Section -->
+            <!-- Start Footer Bottom Section -->
+            <div class="footer__bottom">
+                <div class="row">
+                    <div class="col-lg-8 col-md-6 col-12">
+                        <!-- Start Footer Copyright Text -->
+                        <div class="footer__copyright-text">
+                            <p>Copyright © 2021 Shop Pty. Ltd. All Rights Reserved</p>
+                        </div> <!-- End Footer Copyright Text -->
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <!-- Start Footer Payment Logo -->
+                        <div class="footer__payment">
+                            <a href="#" class="footer__payment-link">
+                                <img src="~/img/company-logo/payment.png" alt="" class="footer__payment-img">
+                            </a>
+                        </div> <!-- End Footer Payment Logo -->
+                    </div>
+                </div>
+            </div> <!-- End Footer Bottom Section -->
+        </div>
+    </footer>
+    <!-- ::::::  End  Footer ::::::  -->
+        </div>
+    </footer> <!-- ::::::  End  Footer ::::::  -->
+    <!-- material-scrolltop button -->
+    <button class="material-scrolltop" type="button"></button>
+
+    <!-- Start Modal Add cart -->
+    <div class="modal fade" id="modalAddCart" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog  modal-dialog-centered modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col text-right">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true"> <i class="fal fa-times"></i></span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-7">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="modal__product-img">
+                                            <img class="img-fluid"
+                                                src={% static "/img/product/size-normal/product-home-1-img-1.jpg" %} alt="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="link--green link--icon-left"><i
+                                                class="fal fa-check-square"></i>Added to cart successfully!</div>
+                                        <div class="modal__product-cart-buttons m-tb-15">
+                                            <a href="cart.html"
+                                                class="btn btn--box  btn--tiny btn--green btn--green-hover-black btn--uppercase">View
+                                                Cart</a>
+                                            <a href="checkout.html"
+                                                class="btn btn--box  btn--tiny btn--green btn--green-hover-black btn--uppercaset">Checkout</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5 modal__border">
+                                <ul class="modal__product-shipping-info">
+                                    <li class="link--icon-left"><i class="icon-shopping-cart"></i> </li>
+                                    <li>Цена: <span>187.00</span></li>
+                                    <li><a href="#" class="btn text-underline color-green" data-dismiss="modal">Продолжить покупки</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- End Modal Add cart -->
+
+    <!-- Start Modal Quickview cart -->
+    <div class="modal fade" id="modalQuickView" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog  modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col text-right">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true"> <i class="fal fa-times"></i></span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="product-gallery-box m-b-60">
+                                    <div class="modal-product-image--large">
+                                        <img class="img-fluid"
+                                            src={% static "/img/product/gallery/gallery-large/product-gallery-large-1.jpg"%}
+                                            alt="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="product-details-box">
+                                    <h5 class="title title--normal m-b-20">Aliquam lobortis</h5>
+                                    <div class="product__price">
+                                        <span class="product__price-del">$35.90</span>
+                                        <span class="product__price-reg">$31.69</span>
+                                    </div>
+                                    <ul class="product__review m-t-15">
+                                        <li class="product__review--fill"><i class="icon-star"></i></li>
+                                        <li class="product__review--fill"><i class="icon-star"></i></li>
+                                        <li class="product__review--fill"><i class="icon-star"></i></li>
+                                        <li class="product__review--fill"><i class="icon-star"></i></li>
+                                        <li class="product__review--blank"><i class="icon-star"></i></li>
+                                    </ul>
+                                    <div class="product__desc m-t-25 m-b-30">
+                                        <p>On the other hand, we denounce with righteous indignation and dislike men who
+                                            are so beguiled and demoralized by the charms of pleasure of the moment, so
+                                            blinded by desire, that they cannot foresee the pain and trouble that are
+                                            bound to ensue; and equal blame belongs to those who fail in their duty
+                                            through weakness of will</p>
+                                    </div>
+
+                                    <div class="product-var p-t-30">
+                                        <div
+                                            class="product-quantity product-var__item d-flex align-items-center flex-wrap">
+                                            <span class="product-var__text">Количество </span>
+                                            <form class="modal-quantity-scale m-l-20">
+                                                <div class="value-button" id="modal-decrease"
+                                                    onclick="decreaseValueModal()">-</div>
+                                                <input type="number" id="modal-number" value="1" />
+                                                <div class="value-button" id="modal-increase"
+                                                    onclick="increaseValueModal()">+</div>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <div class="product-links">
+                                        <div class="product-social m-tb-30">
+                                            <span>SHARE THIS PRODUCT</span>
+                                            <ul class="product-social-link">
+                                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                                <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+                                                <li><a href="#"><i class="fab fa-pinterest"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- End Modal Quickview cart -->
+
+    <!-- Vendor JS Files -->
+    <script src={% static "/js/vendor/jquery-3.5.1.min.js" %}></script>
+    <script src={% static "/js/vendor/modernizr-3.7.1.min.js" %}></script>
+    <script src={% static "/js/vendor/jquery-ui.min.js" %}></script>
+    <script src={% static "/js/vendor/bootstrap.bundle.min.js" %}></script>
+
+    <!-- Plugins JS Files -->
+    <script src={% static "/js/plugin/slick.min.js" %}></script>
+    <script src={% static "/js/plugin/jquery.countdown.min.js" %}></script>
+    <script src={% static "/js/plugin/material-scrolltop.js" %}></script>
+    <script src={% static "/js/plugin/price_range_script.js" %}></script>
+    <script src={% static "/js/plugin/in-number.js" %}></script>
+    <script src={% static "/js/plugin/jquery.elevateZoom-3.0.8.min.js" %}></script>
+    <script src={% static "/js/plugin/venobox.min.js" %}></script>
+    <script src={% static "/js/plugin/jquery.waypoints.js" %}></script>
+    <script src={% static "/js/plugin/jquery.lineProgressbar.js" %}></script>
+
+{#    <script src="js/jquery-3.3.1.min.js" ></script>#}
+{#    <script src="js/popper.min.js"></script>#}
+{#    <script src="js/bootstrap.min.js"></script>#}
+{#    <script src="js/jquery.validate.min.js"></script>#}
+{#    <script src="js/main.js"></script>#}
+
+    <!-- Use the minified version files listed below for better performance and remove the files listed above -->
+    <!-- <script src="assets/js/vendor/vendor.min.js"></script>
+    <script src="assets/js/plugin/plugins.min.js"></script> -->
+
+    <!-- Main js file that contents all jQuery plugins activation. -->
+    <script src={% static "/js/main.js" %}></script>
+</body>

@@ -1,0 +1,78 @@
+{% extends "Shop/base.html" %}
+
+{% block main %}
+        <!-- :::::: End Header Section ::::::  -->
+    <!-- ::::::  Start  Breadcrumb Section  ::::::  -->
+    <div class="page-breadcrumb">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <ul class="page-breadcrumb__menu">
+                        <li class="page-breadcrumb__nav"><a href="index.html">Главная</a></li>
+                        <li class="page-breadcrumb__nav active">Оплата</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div> <!-- ::::::  End  Breadcrumb Section  ::::::  -->
+    <div>
+        <p class="payment_info">ОПЛАТА
+        </p>
+        <p class="payment_info">
+            Платежные реквизиты:
+        </p>
+        <p class="payment_info">
+                    <h1>Дякуємо</h1>
+                <p>Ваше замовлення успішно виконано. Номер вашого замовлення
+                        <strong>{{ order.id }}</strong>.</p>
+                </p>
+    </div>
+    <main>
+        <!-- ::::::  Start CMS Section  ::::::  -->
+        <div class="cms m-t-100">
+            <div class="container">
+                <div class="row">
+                    <!-- Start Single CMS box -->
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <div class="cms__content">
+                            <div class="cms__icon">
+                                <img src="assets\img\icon\Delivery.png">
+                            </div>
+                            <div class="cms__text">
+                                <h6 class="cms__title">Быстрая доставка</h6>
+                                <p class="para__text">Мы всегда доставляем товар в кратчайшие возможные сроки.</p>
+                            </div>
+                        </div>
+                    </div> <!-- End Single CMS box -->
+                    <!-- Start Single CMS box -->
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <div class="cms__content">
+                            <div class="cms__icon">
+                                <img src="assets\img\icon\Refund.png">
+                            </div>
+                            <div class="cms__text">
+                                <h6 class="cms__title">Гарантия возврата</h6>
+                                <p class="para__text">В случае возникновения неисправности товара мы всегда вернем
+                                    средства</p>
+                            </div>
+                        </div>
+                    </div> <!-- End Single CMS box -->
+                    <!-- Start Single CMS box -->
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <div class="cms__content">
+                            <div class="cms__icon">
+                                <img src="assets\img\icon\Support.png">
+                            </div>
+                            <div class="cms__text" style="margin-bottom:87px">
+                                <h6 class="cms__title">Поддержка</h6>
+                                <p class="para__text">Мы всегда готовы помочь в решении вопросов наших клиентов.</p>
+                            </div>
+                        </div>
+                    </div> <!-- End Single CMS box -->
+                </div>
+            </div>
+        </div> <!-- ::::::  End CMS Section  ::::::  -->
+    </main> <!-- ::::::  End  Main Container Section  ::::::  -->
+    </main>
+
+{% endblock %}

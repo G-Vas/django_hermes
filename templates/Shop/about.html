@@ -1,0 +1,64 @@
+{% extends 'Shop/base.html' %}
+{% load static %}
+{% block main %}
+       <div class="slider">
+
+        <input type="radio" name="slider" title="slide1" checked="checked" class="slider__nav" />
+        <input type="radio" name="slider" title="slide2" class="slider__nav" />
+        <input type="radio" name="slider" title="slide3" class="slider__nav" />
+        <input type="radio" name="slider" title="slide4" class="slider__nav" />
+        <div class="slider__inner">
+            <div class="slider__contents" ><img src={% static "/img/‘’.png" %} alt="" class="slider__image">
+                <p class="slider__txt">Здравствуйте! Вас приветствует компания Hermes New - фирма которая продает оригинальные, а
+                    также аналоги запчастей к автомобилям.
+                    Вам будет полезно знать, что на нашем сайте вы легко познакомитесь с
+                    частью нашего ассортимента, а также с информацией о доставке и возможных варианты
+                    оплаты.
+                </p>
+                <h2 class="slider__caption">- Команда Hermes New</h2>
+            </div>
+            <div class="slider__contents"><img src={% static "assets/img/‘’.png" %} alt="" class="slider__image">
+                <p class="slider__txt">Преимущество покупать товар у нас - это высокое и качественное обслуживание специалистами,
+                    постоянным клиентам предоставляется скидка, большой ассортимент товара, гарантированное качество автозапчастей.
+                </p>
+                <h2 class="slider__caption">- Команда Hermes New</h2>
+            </div>
+            <div class="slider__contents"><img src={% static "/img/‘’.png" %} alt="" class="slider__image">
+                <p class="slider__txt">Наша деятельность ориентирована на построение долгосрочных и взаимовыгодных
+                    партнерских отношений со своими клиентами. Мы предлагаем Вам широкий выбор автозапчастей по доступной цене.</p>
+                <h2 class="slider__caption">- Команда Hermes New</h2>
+            </div>
+            <div class="slider__contents"><img src={% static "/img/‘’.png" %} alt="" class="slider__image">
+                <p class="slider__txt">Основной направленностью является продажа качественных и
+                    высоконадежных автозапчастей: широкое наличие, заказ нужных автозапчастей, оптовые цены, оригинальные
+                    запчасти и их аналоги. </p>
+                <h2 class="slider__caption">- Команда Hermes New</h2>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="aboutus_1">
+        <img src={% static "/img/about1.png" %} alt="" class="about1">
+        <div class="block_about">
+            <h2 class="header_about_text">Наша компания продолжает развиваться </h2>
+            <p class="text_about1">В нашем ассортименте Вы можете найти как запчасти оригинального производства, так и
+                их
+                аналоги от известных брендов.
+                Если такая возможность существует, то мы всегда стараемся предоставить нашим покупателям выбор по качеству и,
+                соответственно, по цене. Нашими клиентами являются как отдельные частные покупатели для своих автомобилей, так и большие
+                торговые фирмы, автосервисы, автомагазины городов и областей Украины. </p>
+        </div>
+    </div>
+    <div class="aboutus_2">
+        <img src={% static "/img/about2.png" %} alt="" class="about2">
+        <div class="block_about2">
+            <h2 class="header_about_text2">Мы открыты к сотрудничеству</h2>
+            <p class="text_about2">Цены и наличие обновляются ежедневно, поэтому практически всегда актуальны.
+                Ведется постоянное пополнение состава и расширение ассортимента запчастей.
+                Если Вы владелец СТО, магазина или интернет-магазина, вы можете получить надежных партнеров
+                по поставке запчастей.
+                Взаимовыгодное и долгосрочное сотрудничество - это наш приоритет. </p>
+        </div>
+    </div>
+{% endblock %}

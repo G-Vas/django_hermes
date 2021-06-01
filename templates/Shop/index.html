@@ -1,0 +1,198 @@
+{% extends 'Shop/base.html' %}
+{% load static %}
+{% block main %}
+    <!-- :::::: Start Main Container Wrapper :::::: -->
+    <!-- :::::: Start Main Container Wrapper :::::: -->
+    <main id="main-container" class="main-container">
+        <!-- ::::::  Start Hero Section  ::::::  -->
+        <div class="col-xl-7 col-lg-6">
+            <form class="header-search" action="{% url "search" %}" method="get">
+                <div class="header-search__content pos-relative">
+                    <input type="search" name="q" placeholder="Search our store" required>
+                    <button class="pos-absolute" type="submit"><i class="icon-search"></i></button>
+                </div>
+            </form>
+        </div>
+{#            <form action="{% url "search" %}" method="get">#}
+{#                                <input class="form-control" placeholder="Search here..." name="q" type="search">#}
+{#                                <button type="submit"> <i class="fa fa-search"></i> </button>#}
+{#                            </form>#}
+
+        <div class="hero slider">
+
+            <!-- Start Single Hero Slide -->
+            <div class="hero-slider">
+                <img src={% static "/img/hero/hero-home-1-img-1.jpg" %} alt="">
+
+            </div> <!-- End Single Hero Slide -->
+
+            <!-- Start Single Hero Slide -->
+            <div class="hero-slider">
+            </div> <!-- End Single Hero Slide -->
+        </div> <!-- ::::::  End Hero Section  ::::::  -->
+        <!-- ::::::  Start  Main Container Section  ::::::  -->
+        <div class="about-top">
+            <div class="container">
+                <div class="row">
+                    <div class="section-content--border">
+                        <div class="section-content__inner">
+                            <h2 class="section-content__title">Наши преимущества</h2>
+                            <p class="section-content">Наш интернет-магазин автомобильных деталей создал каталог, в
+                                котором вы можете самостоятельно подобрать все необходимые автотовары, добавить их в
+                                корзину и заказать доставку в любой регион страны.
+                                Онлайн покупка автотоваров еще никогда не была такой простой и удобной.
+                            </p>
+                            <a href="AboutUs.html"
+                                class="btn btn--large btn--radius btn--black btn--black-hover-green font--bold text-uppercase"
+                                tabindex="-1">О Нас</a>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ::::::  Start CMS Section  ::::::  -->
+        <div class="cms m-t-100">
+            <div class="container">
+                <div class="row">
+                    <!-- Start Single CMS box -->
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <div class="cms__content">
+                            <div class="cms__icon">
+                                <img src={% static "\img\icon\Delivery.png" %}>
+                            </div>
+                            <div class="cms__text">
+                                <h6 class="cms__title">Быстрая доставка</h6>
+                                <p class="para__text">Мы всегда доставляем товар в кратчайшие возможные сроки.</p>
+                            </div>
+                        </div>
+                    </div> <!-- End Single CMS box -->
+                    <!-- Start Single CMS box -->
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <div class="cms__content">
+                            <div class="cms__icon">
+                                <img src={% static "\img\icon\Refund.png" %}>
+                            </div>
+                            <div class="cms__text">
+                                <h6 class="cms__title">Гарантия возврата</h6>
+                                <p class="para__text">В случае возникновения неисправности товара мы всегда вернем
+                                    средства</p>
+                            </div>
+                        </div>
+                    </div> <!-- End Single CMS box -->
+                    <!-- Start Single CMS box -->
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <div class="cms__content">
+                            <div class="cms__icon">
+                                <img src={% static "\img\icon\Support.png" %}>
+                            </div>
+                            <div class="cms__text" style="margin-bottom:87px">
+                                <h6 class="cms__title">Поддержка</h6>
+                                <p class="para__text">Мы всегда готовы помочь в решении вопросов наших клиентов.</p>
+                            </div>
+                        </div>
+                    </div> <!-- End Single CMS box -->
+                </div>
+            </div>
+        </div> <!-- ::::::  End CMS Section  ::::::  -->
+
+
+        <body>
+	<div class="carousel-wrapper_banner">
+		<div id="item-1_banner">
+		</div>
+		<div id="item-2_banner">
+
+		</div>
+		<div id="item-3_banner">
+
+		</div>
+		<div class="carousel-item_banner item-1_banner">
+			<img src={% static "img/banner1.png" %} width="800" height="400" alt="">
+		  <a class="arrow_banner arrow-prev" href="#item-3_banner"></a>
+		  <a class="arrow_banner arrow-next" href="#item-2_banner"></a>
+		</div>
+
+		<div class="carousel-item_banner item-2_banner">
+			<img src={% static "img/banner2.png" %} width="800" height="400" alt="">
+		  <a class="arrow_banner arrow-prev" href="#item-1_banner"></a>
+		  <a class="arrow_banner arrow-next" href="#item-3_banner"></a>
+		</div>
+
+		<div class="carousel-item_banner item-3_banner">
+			<img src={% static "img/banner3.png" %} width="800" height="400" alt="">
+		  <a class="arrow_banner arrow-prev" href="#item-2_banner"></a>
+		  <a class="arrow_banner arrow-next" href="#item-1_banner"></a>
+		</div>
+
+</div>
+
+
+        <!-- ::::::  Start  Company Logo Section  ::::::  -->
+        <div class="company-logo">
+            <div class="container">
+                <div class="row">
+
+                    <div class="section-content__inner">
+                        <h2>Популярные марки автомобилей</h2>
+                    </div>
+                    <div class="company-logo__area default-slider">
+                        <!-- Start Single Company Logo Item -->
+                        <div class="company-logo__item">
+                            <a href="#" class="company-logo__link">
+                                <img src={% static "/img/company-logo/company-logo-1.png" %} alt="" class="company-logo__img">
+                            </a>
+                        </div> <!-- End Single Company Logo Item -->
+                        <!-- Start Single Company Logo Item -->
+                        <div class="company-logo__item">
+                            <a href="#" class="company-logo__link">
+                                <img src={% static "/img/company-logo/company-logo-2.png" %} alt="" class="company-logo__img">
+                            </a>
+                        </div> <!-- End Single Company Logo Item -->
+                        <!-- Start Single Company Logo Item -->
+                        <div class="company-logo__item">
+                            <a href="#" class="company-logo__link">
+                                <img src={% static "/img/company-logo/company-logo-3.png" %} alt="" class="company-logo__img">
+                            </a>
+                        </div> <!-- End Single Company Logo Item -->
+                        <!-- Start Single Company Logo Item -->
+                        <div class="company-logo__item">
+                            <a href="#" class="company-logo__link">
+                                <img src={% static "/img/company-logo/company-logo-4.png" %} alt="" class="company-logo__img">
+                            </a>
+                        </div> <!-- End Single Company Logo Item -->
+                        <!-- Start Single Company Logo Item -->
+                        <div class="company-logo__item">
+                            <a href="#" class="company-logo__link">
+                                <img src={% static "/img/company-logo/company-logo-5.png" %} alt="Ford"
+                                    class="company-logo__img">
+                            </a>
+                        </div> <!-- End Single Company Logo Item -->
+                        <!-- Start Single Company Logo Item -->
+                        <div class="company-logo__item">
+                            <a href="#" class="company-logo__link">
+                                <img src={% static "/img/company-logo/company-logo-6.png" %} alt="" class="company-logo__img">
+                            </a>
+                        </div> <!-- End Single Company Logo Item -->
+                        <!-- Start Single Company Logo Item -->
+                        <div class="company-logo__item">
+                            <a href="#" class="company-logo__link">
+                                <img src={% static "/img/company-logo/company-logo-7.png" %} alt="" class="company-logo__img">
+                            </a>
+                        </div> <!-- End Single Company Logo Item -->
+                    </div>
+                </div>
+            </div>
+        </div> <!-- ::::::  End  Company Logo Section  ::::::  -->
+
+    </main> <!-- :::::: End MainContainer Wrapper :::::: -->
+ {% endblock %}
+{#{% block scripts %}#}
+{#    <script src={% static "/js/vendor/vendor.min.js" %}></script>#}
+{#    <script src={% static "/js/plugin/plugins.min.js" %}></script>#}
+{##}
+{#    <!-- Main js file that contents all jQuery plugins activation. -->#}
+{#    <script src={% static "/js/main.js" %}></script>#}
+{#{% endblock %}#}

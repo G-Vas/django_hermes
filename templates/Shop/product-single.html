@@ -1,0 +1,214 @@
+{% extends 'Shop/base.html' %}
+{% load static %}
+{% block main %}
+    <main id="main-container" class="main-container">
+
+        <!-- Start Product Details Gallery -->
+        <div class="product-details">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="product-gallery-box product-gallery-box--default m-b-60">
+                            <div class="product-image--large product-image--large-horizontal">
+                                <img class="img-fluid" id="img-zoom" src="{{ post.image.url }}" data-zoom-image="assets/img/product/gallery/gallery-large/product-gallery-large-1.jpg" alt="">
+                            </div>
+                            <div id="gallery-zoom" class="product-image--thumb product-image--thumb-horizontal pos-relative">
+                                <a class="zoom-active" data-image="assets/img/product/gallery/gallery-large/product-gallery-large-1.jpg" data-zoom-image="assets/img/product/gallery/gallery-large/product-gallery-large-1.jpg">
+                                    {% for photo in post.photos_set.all %}
+                                        <img class="img-fluid" src="{{ photo.image.url }}" alt="">
+                                    {% endfor %}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="product-details-box m-b-60">
+                            <h4 class="font--regular m-b-20">{{ post.title }}</h4>
+
+                            <div class="product__price m-t-5">
+                                <span class="product__price product__price--large">{{ post.price }}</span>
+
+                            </div>
+
+                            <div class="product__desc m-t-25 m-b-30">
+                                <p>{{ post.tagline|safe }}</p>
+                            </div>
+                            <div class="product-var p-tb-30">
+                                <div class="product__stock m-b-20">
+                                    <span class="product__stock--in"><i class="fas fa-check-circle"></i>В наличии</span>
+                                </div>
+                                <div class="product-quantity product-var__item">
+                                    <ul class="product-modal-group">
+                                        <li><a href="#modalSizeGuide" data-toggle="modal"  class="link--gray link--icon-left"><i class="fal fa-money-check-edit"></i>Цена/Качество</a></li>
+                                        <li><a href="#modalShippinginfo" data-toggle="modal"  class="link--gray link--icon-left"><i class="fal fa-truck-container"></i>Доставка</a></li>
+                                        <li><a href="{% url "call" %}" data-toggle="modal"  class="link--gray link--icon-left"><i class="fal fa-envelope"></i>Закажите консультацию</a></li>
+                                    </ul>
+                                </div>
+                                <div  class="product-quantity product-var__item d-flex align-items-center">
+                                    <span class="product-var__text">Количество: </span>
+                                    <form class="quantity-scale m-l-20" action="{% url 'cart:cart_add' post.id%}" method="post">
+                                        {{ cart_product_form.quantity }}
+                                        {% csrf_token %}
+                                        <p>
+                                        <div class="product-var__item">
+                                            <input class="btn btn--long btn--radius-tiny btn--green btn--green-hover-black btn--uppercase btn--weight m-r-20" type="submit" value="В корзину">
+                                        </div>
+                                        </p>
+                                    </form>
+{#                                    <form class="quantity-scale m-l-20">#}
+{#                                        <div class="value-button" id="decrease" onclick="decreaseValue()">-</div>#}
+{#                                        <input type="number" id="number" value="1" />#}
+{#                                        <div class="value-button" id="increase" onclick="increaseValue()">+</div>#}
+{#                                    </form>#}
+                                </div>
+{#                                <div class="product-var__item">#}
+{#                                    <a href="#modalAddCart" data-toggle="modal" data-dismiss="modal" class="btn btn--long btn--radius-tiny btn--green btn--green-hover-black btn--uppercase btn--weight m-r-20">Add to cart</a>#}
+{#                                    <a href="wishlist.html" class="btn btn--round btn--round-size-small btn--green btn--green-hover-black"><i class="fas fa-heart"></i></a>#}
+{#                                </div>#}
+{#                                <div class="product-var__item">#}
+{#                                    <div class="dynmiac_checkout--button">#}
+{#                                        <input type="checkbox" id="buy-now-check" value="1" class="p-r-30">#}
+{#                                        <label for="buy-now-check" class="m-b-20">I agree with the terms and condition</label>#}
+{#                                        <a href="cart.html" class="btn btn--block btn--long btn--radius-tiny btn--green btn--green-hover-black text-uppercase m-r-35">Buy It Now</a>#}
+{#                                    </div>#}
+{#                                </div>#}
+                                <div class="product-var__item">
+                                    <span class="product-var__text">Гарантированная безопасная оплата </span>
+                                    <ul class="payment-icon m-t-5">
+                                        <li><img src={% static "/img/icon/payment/paypal.svg" %} alt=""></li>
+                                        <li><img src={% static "/img/icon/payment/amex.svg" %} alt=""></li>
+                                        <li><img src={% static "/img/icon/payment/ipay.svg" %} alt=""></li>
+                                        <li><img src={% static "/img/icon/payment/visa.svg" %} alt=""></li>
+                                        <li><img src={% static "/img/icon/payment/shoify.svg" %} alt=""></li>
+                                        <li><img src={% static "/img/icon/payment/mastercard.svg" %} alt=""></li>
+                                        <li><img src={% static "/img/icon/payment/gpay.svg" %} alt=""></li>
+                                    </ul>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- End Product Details Gallery -->
+
+        <!-- Start Product Details Tab -->
+        <div class="product-details-tab-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="product-details-content">
+                            <ul class="tablist tablist--style-black tablist--style-title tablist--style-gap-30 nav">
+                                <li><a class="nav-link active" data-toggle="tab" href="#product-desc">Описание</a></li>
+                                <li><a class="nav-link" data-toggle="tab" href="#product-dis">Детали продукта</a></li>
+{#                                <li><a class="nav-link" data-toggle="tab" href="#product-review">Reviews</a></li>#}
+                            </ul>
+                            <div class="product-details-tab-box">
+                                <div class="tab-content">
+                                    <!-- Start Tab - Product Description -->
+                                    <div class="tab-pane show active" id="product-desc">
+                                        <div class="para__content">
+                                            <p>{{ post.text|safe }}</p>
+{#                                            <p >Use the Canon VIXIA GX10 Camcorder to capture UHD 4K video at 60 fps, recording in MP4 to dual SD memory card slots. This camcorder packs several pro-style features into its compact form, including Dual-Pixel Autofocus (DPAF). The GX10's 1" 8.29MP CMOS sensor and dual DIGIC DV 6 image processors support Wide DR Gamma with high sensitivity and low noise. Slow and fast-motion recording up to 120 fps offers special looks for highlighting sports and other special events. Smooth, steady shooting is assisted by the GX10's five-axis optical image stabilization. For composing and viewing your footage, the VIXIA GX10 incorporates a flip-out 3.5" touchscreen LCD, and a 0.24" electronic viewfinder. </p>#}
+{#                                            <p class="para__text">Additional GX10 features include an HDMI 2.0 port for outputting your 4K UHD footage, assignable user buttons, and remote control using the included WL-D89 controller. Wi-Fi connectivity offers live streaming, FTP file sharing, and remote control via iOS and Android apps.</p>#}
+{#                                            <h6 class="para__title">Product Highlights:</h6>#}
+{#                                            <ul class="para__list">#}
+{#                                                <li>UHD 4K Output up to 60 fps</li>#}
+{#                                                <li>8.29MP, 1" CMOS Sensor</li>#}
+{#                                                <li>Dual-Pixel CMOS Autofocus Feature</li>#}
+{#                                                <li>Integrated 15x Optical Zoom Lens</li>#}
+{#                                                <li>2 x DIGIC DV 6 Processors</li>#}
+{#                                                <li>5-Axis Optical Image Stabilization</li>#}
+{#                                                <li>Wide Dynamic Range Support</li>#}
+{#                                                <li>Records 4K UHD/HD to Dual SD Card Slots</li>#}
+{#                                                <li>3.5" Touchscreen LCD &amp; 0.24" EVF</li>#}
+{#                                                <li>Live Stream/FTP/Remote App via Wi-Fi</li>#}
+{#                                            </ul>#}
+                                        </div>    
+                                    </div>  <!-- End Tab - Product Description -->
+
+                                    <!-- Start Tab - Product Details -->
+                                    <div class="tab-pane" id="product-dis">
+                                        <div class="product-dis__content">
+{#                                            <a href="#" class="product-dis__img m-b-30"><img src={% static "/img/logo/another-logo.jpg"  %}alt=""></a>#}
+                                            <div class="table-responsive-md">
+                                                <table class="product-dis__list table table-bordered">
+                                                    <tbody>
+{#                                                        {% for feature_list in post.features.all %}#}
+                                                            {% for features in post.feature.all %}
+                                                        <tr>
+                                                            <td class="product-dis__title">{{ features.feature_name }}</td>
+                                                            <td class="product-dis__text">{{ features.value }} </td>
+                                                        </tr>
+                                                            {% endfor %}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>  <!-- End Tab - Product Details -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>  <!-- End Product Details Tab -->
+
+        <!-- ::::::  Start  Product Style - Default Section  ::::::  -->
+
+        <!-- ::::::  Start  Company Logo Section  ::::::  -->
+        <div class="company-logo m-t-100">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="company-logo__area default-slider">
+                            <!-- Start Single Company Logo Item -->
+                            <div class="company-logo__item">
+                                <a href="#" class="company-logo__link">
+                                    <img src={% static "/img/company-logo/company-logo-1.png" %} alt="" class="company-logo__img">
+                                </a>
+                            </div> <!-- End Single Company Logo Item -->
+                            <!-- Start Single Company Logo Item -->
+                            <div class="company-logo__item">
+                                <a href="#" class="company-logo__link">
+                                    <img src={% static "/img/company-logo/company-logo-2.png" %} alt="" class="company-logo__img">
+                                </a>
+                            </div> <!-- End Single Company Logo Item -->
+                            <!-- Start Single Company Logo Item -->
+                            <div class="company-logo__item">
+                                <a href="#" class="company-logo__link">
+                                    <img src={% static "/img/company-logo/company-logo-3.png" %} alt="" class="company-logo__img">
+                                </a>
+                            </div> <!-- End Single Company Logo Item -->
+                            <!-- Start Single Company Logo Item -->
+                            <div class="company-logo__item">
+                                <a href="#" class="company-logo__link">
+                                    <img src={% static "/img/company-logo/company-logo-4.png" %} alt="" class="company-logo__img">
+                                </a>
+                            </div> <!-- End Single Company Logo Item -->
+                            <!-- Start Single Company Logo Item -->
+                            <div class="company-logo__item">
+                                <a href="#" class="company-logo__link">
+                                    <img src={% static "/img/company-logo/company-logo-5.png" %} alt="" class="company-logo__img">
+                                </a>
+                            </div> <!-- End Single Company Logo Item -->
+                            <!-- Start Single Company Logo Item -->
+                            <div class="company-logo__item">
+                                <a href="#" class="company-logo__link">
+                                    <img src={% static "/img/company-logo/company-logo-6.png" %} alt="" class="company-logo__img">
+                                </a>
+                            </div> <!-- End Single Company Logo Item -->
+                            <!-- Start Single Company Logo Item -->
+                            <div class="company-logo__item">
+                                <a href="#" class="company-logo__link">
+                                    <img src={% static "/img/company-logo/company-logo-7.png" %} alt="" class="company-logo__img">
+                                </a>
+                            </div> <!-- End Single Company Logo Item -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- ::::::  End  Company Logo Section  ::::::  -->
+        
+    </main>  <!-- :::::: End MainContainer Wrapper :::::: -->
+{% endblock %}
